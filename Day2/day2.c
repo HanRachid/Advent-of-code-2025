@@ -83,7 +83,7 @@ int day2(void) {
     int64_t sum_2 = 0;
     int64_t current_id;
     while (1){
-        if (buffer[ptr] == ','|| buffer[ptr] == '\0'){
+        if (buffer[ptr] == ',' || buffer[ptr] == '\0'){
             for (i = _atoi64(current_range_start); i <= _atoi64(current_range_last) ; i++){
                 
                 if ((i%(1+(pow(10,count_digits(i)/2))))==0 && count_digits(i)%2==0){

@@ -5,10 +5,11 @@ typedef int(*day_fn)(void);
 
 int day1(void);
 int day2(void);
+int day3(void);
 
 int main(void)
 {
-    day_fn days[] = {day1,day2};
+    day_fn days[] = {day1,day2,day3};
     for (int i = 0; i<sizeof(days)/sizeof(days[0]); i++){
     LARGE_INTEGER qpf;
     QueryPerformanceFrequency(&qpf);
