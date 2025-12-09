@@ -22,7 +22,7 @@ int64_t pow10(int val, int pow){
 int day3(void){
     FILE *stream;
     char buffer[256];
-    fopen_s(&stream, "./Day3/day3.txt", "r");
+    fopen_s(&stream, "./Day3/day3_ex.txt", "r");
     int current;
     char direction;
     int curr_max_ptr;
@@ -66,15 +66,18 @@ int day3(void){
             for (k = range_start; k < range_end; k++){
                 if(current < buffer[k]  - '0'){
                     current = buffer[k]  - '0';
-                    ptr = k;    
+                    ptr = k;
                 }
             }
             int l;
             
             range_start = ptr+1;
+            printf("%d",current);
             int64_t current_exp = pow10(current,12-j);
             sum_2 = sum_2 +  current_exp; 
          }
+            printf("\n");
+
     }
     printf("day 3 part 1 : %lld\n", sum_1);
     printf("day 3 part 2 : %lld\n", sum_2);
