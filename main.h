@@ -6,7 +6,7 @@
 typedef struct Buffer
 {
     char *data;
-    uint64_t size;
+    int64_t size;
 } Buffer;
 
 typedef struct Range {
@@ -15,8 +15,8 @@ typedef struct Range {
 } Range;
 
 typedef struct Dimension {
-  uint64_t width;
-  uint64_t height;
+  int64_t width;
+  int64_t height;
 } Dimension;
 
 Buffer read_entire_file(char *filepath);

@@ -35,8 +35,11 @@ void quicksort(int arr[], int low, int high) {
 
 Buffer read_entire_file(char *filepath){
     FILE *stream;
-    int32_t n;
-    fopen_s(&stream, filepath, "r");
+    stream = fopen(filepath, "r");
+    if (stream == NULL) {
+        fprintf(stderr, "Error: Could not open file %s\n", filepath);
+        exit(1);
+    }
 
     fseek(stream, 0, SEEK_END);
     int64_t size = ftell(stream);
@@ -58,6 +61,7 @@ Dimension get_dimension(Buffer buffer){
     while (buffer.data[ptr] != '\n'){
         width++,ptr++;
     }
+    width++;
     ptr = 0;
     while (ptr < buffer.size){
        if (buffer.data[ptr] == '\n')height++;

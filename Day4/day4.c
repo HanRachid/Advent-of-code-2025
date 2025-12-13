@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-
+#include <string.h>
+#include <inttypes.h>
 
 int day4(void){
     FILE *stream;
-    int32_t n;
-    fopen_s(&stream, "./Day4/day4.txt", "r");
+    stream = fopen("./Day4/day4.txt", "r");
     if (stream==NULL) {
         return 1;
     }
@@ -26,7 +26,6 @@ int day4(void){
     }
     
     int32_t height = 1;
-    int j = 0;
     for (int i = 0; i < size; i++) {
         if (buffer[i] == '\n') {
             height++;
@@ -41,14 +40,12 @@ int day4(void){
             i--;
         }
     }
-    j = 0;
     int16_t *adj_arr = (int16_t *)malloc(size * sizeof(int16_t));
     for (int i = 0; i < size; i++) {
         adj_arr[i] = 0;
     }
     int k,l;
     int current_pos;
-    char current;
     // you cant check right if ur in a pos divisible by 10
     // you cant check bottom if  ur in the last line
     // you cant check bottom left if ur in first positiion of line.
@@ -60,7 +57,6 @@ int day4(void){
         for(k=0; k<height; k++){
             for(l=0; l<width; l++){
                 current_pos  = k*width + l + 1;
-                current  = buffer[current_pos-1];
                 if (buffer[current_pos-1] == '.' || buffer[current_pos-1] == '0' ){
                     printf(".");
                     buffer[current_pos-1]  = '.';
@@ -106,7 +102,6 @@ int day4(void){
         printf("\n\n\n");
     }    
     printf("count  : %d\n\n\n", count);
-    
     // printf("height %d width %d\n", height,width);
     fclose(stream);
     free(buffer);

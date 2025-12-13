@@ -5,3 +5,8 @@
 *.pdb
 *.ilk
 *.png
+.cache/
+compile_commands.json
+.clangd
+**.h.gch
+bin/

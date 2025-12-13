@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <time.h>
 #include "../main.h"
-
+#include <inttypes.h>
 
 int day5(void)
 {
@@ -95,8 +95,7 @@ int day5(void)
     clock_t end_time = clock();
     double time_taken = ((double)(end_time - start_time)) / CLOCKS_PER_SEC * 1000;
     
-    printf("\nfreshsecond: %lld (took %.3f ms)\n", countfreshsecond, time_taken);
-    
+    printf("\nfreshsecond: %" PRId64 " (took %.3f ms)\n", countfreshsecond, time_taken);
     free(ranges);
     free(buffer.data);
     return 0;

@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdint.h>
+#include <inttypes.h>
 
 int count_line_chars(char *buffer){
     int i = 0;
@@ -10,7 +10,7 @@ int count_line_chars(char *buffer){
     return i;
 }
 
-int64_t pow10(int val, int pow){
+int64_t pow_10(int val, int pow){
     int i;
     int64_t result = val;
     for (i = 1; i<pow; i++){
@@ -22,9 +22,7 @@ int64_t pow10(int val, int pow){
 int day3(void){
     FILE *stream;
     char buffer[256];
-    fopen_s(&stream, "./Day3/day3_ex.txt", "r");
-    int current;
-    char direction;
+    stream = fopen("./Day3/day3_ex.txt", "r");
     int curr_max_ptr;
     int ptr;
     int curr_max;
@@ -69,18 +67,16 @@ int day3(void){
                     ptr = k;
                 }
             }
-            int l;
-            
             range_start = ptr+1;
             printf("%d",current);
-            int64_t current_exp = pow10(current,12-j);
+            int64_t current_exp = pow_10(current,12-j);
             sum_2 = sum_2 +  current_exp; 
          }
             printf("\n");
 
     }
-    printf("day 3 part 1 : %lld\n", sum_1);
-    printf("day 3 part 2 : %lld\n", sum_2);
+    printf("day 3 part 1 : %"PRId64"\n", sum_1);
+    printf("day 3 part 2 : %"PRId64"\n", sum_2);
 
 
     fseek(stream, 0, SEEK_SET);

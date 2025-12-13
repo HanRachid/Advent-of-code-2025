@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+#include <inttypes.h>
 
 int64_t count_digits(int64_t n) {
     if (n < 10) return 1;
@@ -51,17 +52,15 @@ int check_divisibility_combinations(int64_t n, int digits){
     return 0;
 }
 
-int64_t pow(int64_t n, int pow){
-    int i;
+int64_t power(int64_t n, int power){
     int64_t mul = 1;
-    for (int i = 0; i < pow ; i++) mul*=n;
+    for (int i = 0; i < power ; i++) mul*=n;
     return mul;
 }
 
 int day2(void) {
     FILE *stream;
-    int32_t n;
-    fopen_s(&stream, "./Day2/day2.txt", "r");
+    stream = fopen("./Day2/day2.txt", "r");
     if (stream==NULL) {
         return 1;
     }
@@ -81,12 +80,11 @@ int day2(void) {
     int64_t i;
     int64_t sum_1 = 0;
     int64_t sum_2 = 0;
-    int64_t current_id;
     while (1){
         if (buffer[ptr] == ',' || buffer[ptr] == '\0'){
-            for (i = _atoi64(current_range_start); i <= _atoi64(current_range_last) ; i++){
+            for (i = atoll(current_range_start); i <= atoll(current_range_last) ; i++){
                 
-                if ((i%(1+(pow(10,count_digits(i)/2))))==0 && count_digits(i)%2==0){
+                if ((i%(1+(power(10,count_digits(i)/2))))==0 && count_digits(i)%2==0){
                     sum_1+=i;
                     sum_2+=i;
                     fflush(stdout);
@@ -116,8 +114,8 @@ int day2(void) {
         ptr++;
         
     }
-    printf("day 2 part 1 : %lld\n", sum_1);
-    printf("day 2 part 2 : %lld\n", sum_2);
+    printf("day 2 part 1 : %"PRId64"\n", sum_1);
+    printf("day 2 part 2 : %"PRId64"\n", sum_2);
     fclose(stream);
     return 0;
 }

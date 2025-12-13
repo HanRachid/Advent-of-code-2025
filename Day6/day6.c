@@ -3,11 +3,11 @@
 #include <stdint.h>
 #include <time.h>
 #include "../main.h"
-
+#include <inttypes.h>
 
 int day6(void)
 {
-    Buffer buffer = read_entire_file("./Day6/day6.txt");
+    Buffer buffer = read_entire_file("./Day6/day6_ex.txt");
     int64_t ptr = 0;
     int64_t height = 0;
     int64_t width = 0;
@@ -32,26 +32,24 @@ int day6(void)
     int64_t currenttotal = 0;
     int64_t total = 0;
     char currentoperation = '+';
-    char currentchar = 'n';
     while (operationptr<buffer.size){
       for (i = 1; i <= height; i++){
         ptr = operationptr - (width+1)*(i);
         currentoperation = buffer.data[operationptr];
-        currentchar = buffer.data[ptr];
         if (currentoperation == '*' && currenttotal == 0)currenttotal = 1 ;
         while(buffer.data[ptr]==' ')ptr++;
         while(buffer.data[ptr]!=' ' && buffer.data[ptr] !='\n')currentvalue = currentvalue*10 + (buffer.data[ptr++] - '0');
         if(currentoperation=='*')currenttotal*=currentvalue;
         else currenttotal+=currentvalue;
        
-        currentvalue = 0;
       }
+      currentvalue = 0;
         total+=currenttotal;
         currenttotal = 0;
         operationptr++;
         while (buffer.data[operationptr] == ' ')operationptr++;
     }
-    printf(" total part 1 : %lld\n", total);
+    printf(" total part 1 : %"PRId64"\n", total);
     
     // Part 2: Process column by column from right to left
     total = 0;
@@ -135,7 +133,7 @@ int day6(void)
         col = prob_left - 1; // Move past this problem
     }
     
-    printf(" total part 2 : %lld\n", total);
+    printf(" total part 2 : %"PRId64"\n", total);
 
 
     return 0;

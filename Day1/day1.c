@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <inttypes.h>
 
 int modulo100rest(int n)
 {
@@ -25,7 +26,7 @@ int day1(void)
     int dial_part2 = 50;
     int count_part1 = 0;
     int count_part2 = 0;
-    fopen_s(&stream, "./Day1/day1.txt", "r");
+    stream = fopen("./Day1/day1.txt", "r");
     int current;
     char direction;
     while (fgets(buffer, sizeof(buffer), stream))
